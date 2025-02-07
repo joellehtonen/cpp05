@@ -5,6 +5,8 @@
 #include "ShrubberyCreationForm.hpp"
 
 int main(void) {
+    std::cout << "\nCONSTRUCTORS\n";
+    
     Bureaucrat Alice("Alice", 50);
     Bureaucrat Bob("Bob", 10);
     Bureaucrat Charlie("Charlie", 1);
@@ -12,6 +14,7 @@ int main(void) {
     RobotomyRequestForm R("Daddy");
     ShrubberyCreationForm S("Home");
 
+    std::cout << "\nSHRUBBERY\n";
     try {
         S.beSigned(Alice);
     }
@@ -24,6 +27,7 @@ int main(void) {
     catch (AForm::GradeTooLowException& e) {
         std::cout << "Form execution exception occurred: " << e.what() << std::endl;
     }
+    std::cout << "\nROBOTOMY\n";
     try {
         R.beSigned(Alice);
     }
@@ -42,6 +46,7 @@ int main(void) {
     catch (AForm::GradeTooLowException& e) {
         std::cout << "Form execution exception occurred: " << e.what() << std::endl;
     }
+    std::cout << "\nPARDON\n";
     try {
         P.beSigned(Bob);
     }
@@ -60,5 +65,5 @@ int main(void) {
     catch (AForm::GradeTooLowException& e) {
         std::cout << "Form execution exception occurred: " << e.what() << std::endl;
     }
-
+    std::cout << "\nDESTRUCTORS:\n";
 };
