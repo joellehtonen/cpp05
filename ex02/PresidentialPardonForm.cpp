@@ -27,18 +27,9 @@ PresidentialPardonForm::~PresidentialPardonForm() {
 	std::cout << "A PresidentialPardonForm is burned in the fireplace." << std::endl;
 };
 
-void PresidentialPardonForm::executeForm(Bureaucrat& executor)
+void PresidentialPardonForm::beExecuted() const
 {
-	if (this->getMinGradeToExecute() >= executor.getGrade())
-	{
-		std::cout << "Bureaucrat " << executor.getName() << " has executed the form " << this->getName() << std::endl;
-		std::cout << "\n" << _target << " has been pardoned by Zaphod Beeblebrox!\n" << std::endl;
-	}
-	else
-	{
-		std::cout << "Bureaucrat " << executor.getName() << " (grade: " << executor.getGrade() << ") cannot execute the form " << this->getName() << " as it requires the grade of " << this->getMinGradeToExecute() << std::endl;
-		throw PresidentialPardonForm::GradeTooLowException();
-	}
+	std::cout << "\n" << _target << " has been pardoned by Zaphod Beeblebrox!\n" << std::endl;
 };
 
 const std::string& PresidentialPardonForm::getTarget()

@@ -15,5 +15,5 @@ class RobotomyRequestForm : public AForm {
 		RobotomyRequestForm& operator=(const RobotomyRequestForm& copy);
 
 		const std::string&	getTarget();
-		void				executeForm(Bureaucrat& executor) override;
+		virtual void		beExecuted() const override;
 };

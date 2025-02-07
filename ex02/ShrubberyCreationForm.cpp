@@ -27,35 +27,27 @@ ShrubberyCreationForm::~ShrubberyCreationForm() {
 	std::cout << "A ShrubberyCreationForm is cut to pieces by the secretary." << std::endl;
 };
 
-void ShrubberyCreationForm::executeForm(Bureaucrat& executor)
+void ShrubberyCreationForm::beExecuted() const
 {
-	if (this->getMinGradeToExecute() >= executor.getGrade())
-	{
-		std::cout << "Bureaucrat " << executor.getName() << " has executed the form " << this->getName() << std::endl;
-		std::ofstream shrubbery(this->_target + "_shrubbery");
-		if (shrubbery.is_open())
-		{
-			shrubbery << "        *         " << std::endl;
-			shrubbery << "       ***        " << std::endl;
-			shrubbery << "      *o*o*       " << std::endl;
-			shrubbery << "     *******      " << std::endl;
-			shrubbery << "    **o***o**     " << std::endl;
-			shrubbery << "   ***********    " << std::endl;
-			shrubbery << "  *o*********o*   " << std::endl;
-			shrubbery << " ***************  " << std::endl;
-			shrubbery << "**********o****** " << std::endl;
-			shrubbery << "       |||        " << std::endl;
-			shrubbery << "       |||        " << std::endl;
-			shrubbery << "     =======      " << std::endl;
-			shrubbery.close();
-		}
-		else
-			std::cout << "Unable to create a tree...\n";
+	std::cout << "(Check the working directory)\n";
+	std::ofstream shrubbery(this->_target + "_shrubbery");
+	if (shrubbery.is_open()) {
+		shrubbery << "        *         " << std::endl;
+		shrubbery << "       ***        " << std::endl;
+		shrubbery << "      *o*o*       " << std::endl;
+		shrubbery << "     *******      " << std::endl;
+		shrubbery << "    **o***o**     " << std::endl;
+		shrubbery << "   ***********    " << std::endl;
+		shrubbery << "  *o*********o*   " << std::endl;
+		shrubbery << " ***************  " << std::endl;
+		shrubbery << "**********o****** " << std::endl;
+		shrubbery << "       |||        " << std::endl;
+		shrubbery << "       |||        " << std::endl;
+		shrubbery << "     =======      " << std::endl;
+		shrubbery.close();
 	}
-	else
-	{
-		std::cout << "Bureaucrat " << executor.getName() << " (grade: " << executor.getGrade() << ") cannot execute the form " << this->getName() << " as it requires the grade of " << this->getMinGradeToExecute() << std::endl;
-		throw ShrubberyCreationForm::GradeTooLowException();
+	else {
+		std::cout << "Unable to create a tree...\n";
 	}
 };
 

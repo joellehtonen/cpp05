@@ -19,13 +19,15 @@ class AForm
 		AForm& operator=(const AForm& copy);
 		virtual ~AForm();
 
-		const std::string&	getName();
-		const bool&			getSignature();
-		const int&			getMinGradeToSign();
-		const int&			getMinGradeToExecute();
+		const std::string&	getName() const;
+		const bool&			getSignature() const;
+		const int&			getMinGradeToSign() const;
+		const int&			getMinGradeToExecute() const;
 		
 		void				beSigned(Bureaucrat& signer);
-		virtual void		executeForm(Bureaucrat& executor) = 0;
+		void				execute(Bureaucrat const & executor) const;
+		virtual void		beExecuted() const = 0;
+
 
 
 	class GradeTooHighException : public std::exception {
@@ -33,6 +35,10 @@ class AForm
 			virtual const char* what() const noexcept override;
 	};
 	class GradeTooLowException : public std::exception {
+		public:
+			virtual const char* what() const noexcept override;
+	};
+	class FormNotSigned : public std::exception {
 		public:
 			virtual const char* what() const noexcept override;
 	};

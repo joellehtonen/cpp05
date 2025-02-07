@@ -36,19 +36,19 @@ AForm& AForm::operator=(const AForm& copy) {
 	return *this;
 };
 
-const std::string& AForm::getName() {
+const std::string& AForm::getName() const {
 	return this->_name;
 };
 
-const bool& AForm::getSignature() {
+const bool& AForm::getSignature() const {
 	return this->_signature;
 };
 
-const int& AForm::getMinGradeToSign() {
+const int& AForm::getMinGradeToSign() const {
 	return this->_minGradeToSign;
 };
 
-const int& AForm::getMinGradeToExecute() {
+const int& AForm::getMinGradeToExecute() const {
 	return this->_minGradeToExecute;
 };
 
@@ -65,6 +65,25 @@ void	AForm::beSigned(Bureaucrat& signer) {
 		throw AForm::GradeTooLowException();
 };
 
+
+void AForm::execute(Bureaucrat const & executor) const {
+	if (this->_signature == false)
+	{
+		std::cout << "Bureaucrat " << executor.getName() << " cannot execute the form " << this->getName() << " as it is not signed yet!" << std::endl;
+		throw AForm::FormNotSigned();
+	}
+	if (this->getMinGradeToExecute() < executor.getGrade())
+	{
+		std::cout << "Bureaucrat " << executor.getName() << " (grade: " << executor.getGrade() << ") cannot execute the form " << this->getName() << " as it requires the grade of " << this->getMinGradeToExecute() << std::endl;
+		throw AForm::GradeTooLowException();
+	}
+	else
+	{
+		std::cout << "Bureaucrat " << executor.getName() << " is executing the form " << this->getName() << std::endl;
+		this->beExecuted();
+	}
+};
+
 const char* AForm::GradeTooHighException::what() const noexcept {
 	return ("The grade is too high, please use a lower grade.");
 };
@@ -72,6 +91,10 @@ const char* AForm::GradeTooHighException::what() const noexcept {
 const char* AForm::GradeTooLowException::what() const noexcept {
 	return ("The grade is too low, please use a higher grade.");
 };
+
+const char* AForm::FormNotSigned::what() const noexcept {
+	return ("The form has not been signed, unable to execute.");
+}
 
 std::ostream& operator<<(std::ostream& ostream, AForm& form) {
 	ostream << "The form " << form.getName() << ", min grade required to sign: " << form.getMinGradeToSign() << ", min grade required to execute: " << form.getMinGradeToExecute() << ", is signed: " << form.getSignature();

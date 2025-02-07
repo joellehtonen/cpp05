@@ -19,11 +19,13 @@ class Bureaucrat
         Bureaucrat& operator=(const Bureaucrat& copy);
         ~Bureaucrat();
 
-        const std::string&  getName();
-        const int&          getGrade();
+        const std::string&  getName() const;
+        const int&          getGrade() const;
         void                incrementGrade();
         void                decrementGrade();
+
         void                signForm(AForm& form);
+        void                executeForm(const AForm& form);
 
         class GradeTooHighException : public std::exception {
             public:

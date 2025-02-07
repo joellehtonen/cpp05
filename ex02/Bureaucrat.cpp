@@ -29,11 +29,11 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat &copy) {
     return *this;
 };
 
-const std::string& Bureaucrat::getName() {
+const std::string& Bureaucrat::getName() const {
     return _name;
 };
 
-const int& Bureaucrat::getGrade() {
+const int& Bureaucrat::getGrade() const {
     return _grade;
 };
 
@@ -55,10 +55,19 @@ void Bureaucrat::decrementGrade() {
 
 void Bureaucrat::signForm(AForm& form) {
     if (this->_grade <= form.getMinGradeToSign())
-        std::cout << _name << " signed form " << form.getName() << "." << std::endl;
+        std::cout << _name << " signed form " << form.getName() << std::endl;
     else
         std::cout << _name << " couldn't sign " << form.getName() << " because their grade isn't high enough." << std::endl;
 }
+
+void Bureaucrat::executeForm(const AForm&form) {
+    if (this->_grade <= form.getMinGradeToExecute())
+    {
+        std::cout << _name << " tries to execute form " << form.getName() << std::endl;
+    }
+     else
+        std::cout << _name << " is unable execute " << form.getName() << " as their grade isn't high enough." << std::endl;
+};
 
 const char* Bureaucrat::GradeTooHighException::what() const noexcept {
     return ("The grade is too high, please use a lower grade.");
