@@ -28,7 +28,7 @@ AForm* Intern::makeForm(std::string form, std::string target) {
 	{
 		if (forms[i] == form)
 		{
-			std::cout << "Intern creates " << form << " for " << target << i << std::endl;
+			std::cout << "Intern creates " << form << " for " << target << std::endl;
 			if (i < 5)
 				return (this->*formPointers[0])(target);
 			if (i < 10)

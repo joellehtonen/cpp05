@@ -20,7 +20,8 @@ class Intern {
 
 		AForm*	makeForm(std::string form, std::string target);
 
-		class FormDoesntExist: public std::exception {
-			virtual const char* what() const noexcept override;
+		class FormDoesntExist : public std::exception {
+			public:
+				virtual const char* what() const noexcept override;
 		};
 }; 
