@@ -3,8 +3,28 @@
 int main(void) {
     try {
         Bureaucrat Alice("Alice", 2);
+    }
+    catch (Bureaucrat::GradeTooHighException& e)
+    {
+        std::cout << "Creation exception occured: " << e.what() << std::endl;
+    }
+    catch (Bureaucrat::GradeTooLowException& e)
+    {
+        std::cout << "Creation exception occured: " << e.what() << std::endl;
+    }
+    try {
         Bureaucrat Bob("Bob", 200); //will throw exception
-        // Bureaucrat Charlie("Charlie", 0; //will throw exception
+    }
+    catch (Bureaucrat::GradeTooHighException& e)
+    {
+        std::cout << "Creation exception occured: " << e.what() << std::endl;
+    }
+    catch (Bureaucrat::GradeTooLowException& e)
+    {
+        std::cout << "Creation exception occured: " << e.what() << std::endl;
+    }
+    try {
+        Bureaucrat Charlie("Charlie", 0); //will throw exception
     }
     catch (Bureaucrat::GradeTooHighException& e)
     {

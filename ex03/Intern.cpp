@@ -26,8 +26,13 @@ AForm* Intern::makeForm(std::string form, std::string target) {
 	{
 		if (forms[i] == form)
 		{
-			std::cout << "Intern creates " << form << std::endl;
-			return (this->*formPointers[i])(target);
+			std::cout << "Intern creates " << form << " for " << target << std::endl;
+			if (i < 4)
+				return (this->*formPointers[0])(target);
+			if (i < 8)
+				return (this->*formPointers[1])(target);
+			if (i < 12)
+				return (this->*formPointers[2])(target);
 		}
 	}
 	throw FormDoesntExist();

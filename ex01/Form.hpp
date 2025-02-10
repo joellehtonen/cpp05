@@ -14,10 +14,10 @@ class Form
 		const int			_minGradeToExecute;
 	public:
 		Form();
-		~Form();
+		Form(std::string paramName, int gradeToSign, int gradeToExecute);
 		Form(const Form& copy); 
 		Form& operator=(const Form& copy);
-		Form(std::string paramName, int gradeToSign, int gradeToExecute);
+		~Form();
 
 		const std::string&	getName();
 		const bool&			getSignature();

@@ -65,7 +65,6 @@ void	AForm::beSigned(Bureaucrat& signer) {
 		throw AForm::GradeTooLowException();
 };
 
-
 void AForm::execute(Bureaucrat const & executor) const {
 	if (this->_signature == false)
 	{
