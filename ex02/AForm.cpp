@@ -65,7 +65,7 @@ void	AForm::beSigned(Bureaucrat& signer) {
 		throw AForm::GradeTooLowException();
 };
 
-void AForm::execute(Bureaucrat const & executor) const {
+void AForm::execute(const Bureaucrat& executor) const {
 	if (this->_signature == false)
 	{
 		std::cout << "Bureaucrat " << executor.getName() << " cannot execute the form " << this->getName() << " as it is not signed yet!" << std::endl;

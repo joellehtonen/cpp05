@@ -2,22 +2,21 @@
 #include <string>
 #include <iostream>
 #include <exception>
-#include "AForm.hpp"
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
 
 class Intern {
 	private:
-		AForm* createPresidentialPardonForm(std::string target);
-		AForm* createRobotomyRequestForm(std::string target);
-		AForm* createShrubberyCreationForm(std::string target);
+		AForm* createPresidentialPardonForm(const std::string& target);
+		AForm* createRobotomyRequestForm(const std::string& target);
+		AForm* createShrubberyCreationForm(const std::string& target);
 
 	public: 
 		Intern();
+		~Intern();
 		Intern(const Intern& copy);
 		Intern& operator=(const Intern& copy);
-		~Intern();
 
 		AForm*	makeForm(std::string form, std::string target);
 

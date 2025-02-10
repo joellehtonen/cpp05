@@ -1,12 +1,13 @@
 NAME	=	coffee-making
 CC		=	c++
-FLAGS	=	-Wall -Wextra -Werror -std=c++20
+FLAGS	=	-Wall -Wextra -Werror -std=c++20 -g
 SRCS	=	main.cpp \
 			Bureaucrat.cpp \
 			AForm.cpp \
 			ShrubberyCreationForm.cpp \
 			RobotomyRequestForm.cpp \
-			PresidentialPardonForm.cpp
+			PresidentialPardonForm.cpp \
+			Intern.cpp
 OBJS	=	$(SRCS:.cpp=.o)
 
 all: $(NAME)
@@ -25,4 +26,4 @@ fclean: clean
 
 re: fclean all
 
-.PROXY: all clean fclean re
+.PHONY: all clean fclean re

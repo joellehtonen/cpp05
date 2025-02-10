@@ -1,12 +1,8 @@
-NAME	=	28b_not_28c
+NAME	=	bureaucrat
 CC		=	c++
 FLAGS	=	-Wall -Wextra -Werror -std=c++20
 SRCS	=	main.cpp \
 			Bureaucrat.cpp \
-			AForm.cpp \
-			ShrubberyCreationForm.cpp \
-			RobotomyRequestForm.cpp \
-			PresidentialPardonForm.cpp
 OBJS	=	$(SRCS:.cpp=.o)
 
 all: $(NAME)

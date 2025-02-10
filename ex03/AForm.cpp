@@ -52,7 +52,7 @@ const int& AForm::getMinGradeToExecute() const {
 	return this->_minGradeToExecute;
 };
 
-void	AForm::beSigned(Bureaucrat& signer) {
+void	AForm::beSigned(const Bureaucrat& signer) {
 	if (this->_signature == true)
 	{
 		std::cout << "Bureaucrat " << signer.getName() <<" tried to sign the form " << _name << ", but it has already been signed!" << std::endl;
