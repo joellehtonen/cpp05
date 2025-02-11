@@ -18,57 +18,57 @@ int main(void) {
 
     std::cout << "\nSHRUBBERY\n";
     try {
-        S.execute(Alice);
+        Alice.executeForm(S);
     }
     catch (AForm::FormNotSigned& e) {
         std::cout << FORM_SIGN_ERROR << e.what() << std::endl;
     }
     try {
-        S.beSigned(Alice);
+        Alice.signForm(S);
     }
     catch (AForm::GradeTooLowException& e) {
         std::cout << FORM_SIGN_ERROR << e.what() << std::endl;
     }
     try {
-        S.execute(Alice);
+        Alice.executeForm(S);
     }
     catch (AForm::GradeTooLowException& e) {
         std::cout << FORM_EXEC_ERROR << e.what() << std::endl;
     }
     std::cout << "\nROBOTOMY\n";
     try {
-        R.beSigned(Alice);
+        Alice.signForm(R);
     }
     catch (AForm::GradeTooLowException& e) {
         std::cout << FORM_SIGN_ERROR << e.what() << std::endl;
     }
     try {
-        R.execute(Alice);
+        Alice.executeForm(R);
     }
     catch (AForm::GradeTooLowException& e) {
         std::cout << FORM_EXEC_ERROR << e.what() << std::endl;
     }
     try {
-        R.execute(Bob);
+        Bob.executeForm(R);
     }
     catch (AForm::GradeTooLowException& e) {
         std::cout << FORM_EXEC_ERROR << e.what() << std::endl;
     }
     std::cout << "\nPARDON\n";
     try {
-        P.beSigned(Bob);
+        Bob.signForm(P);
     }
     catch (AForm::GradeTooLowException& e) {
         std::cout << FORM_SIGN_ERROR << e.what() << std::endl;
     }
     try {
-        P.execute(Bob);
+        Bob.executeForm(P);
     }
     catch (AForm::GradeTooLowException& e) {
         std::cout << FORM_EXEC_ERROR << e.what() << std::endl;
     }
     try {
-        P.execute(Charlie);
+        Charlie.executeForm(P);
     }
     catch (AForm::GradeTooLowException& e) {
         std::cout << FORM_EXEC_ERROR << e.what() << std::endl;
