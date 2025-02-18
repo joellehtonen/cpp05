@@ -1,7 +1,7 @@
 #include "Form.hpp"
 
 Form::Form() : _name("Default"), _signature(false), _minGradeToSign(150), _minGradeToExecute(150) {
-	std::cout << "A generic form is created." << std::endl;
+	std::cout << "A generic form is created" << std::endl;
 };
 
 Form::Form(std::string paramName, int gradeToSign, int gradeToExecute)
@@ -13,18 +13,18 @@ Form::Form(std::string paramName, int gradeToSign, int gradeToExecute)
 		throw Form::GradeTooLowException();
 	else
 	{
-		std::cout << "A form " << _name << " created. ";
-		std::cout << "Minimum grade to sign: " <<  _minGradeToSign << ". Minimum grade to execute: " << _minGradeToExecute << "." << std::endl;
+		std::cout << "Form " << _name << " created\n";
+		std::cout << "Minimum grade to sign: " <<  _minGradeToSign << ". Minimum grade to execute: " << _minGradeToExecute << std::endl;
 	}
 };
 
 Form::~Form() {
-	std::cout << "The form " << _name << " has been destroyed. " << std::endl;
+	std::cout << "Form " << _name << " has been destroyed" << std::endl;
 };
 
 Form::Form(const Form& copy) : _name(copy._name), _signature(copy._signature), _minGradeToSign(copy._minGradeToSign), _minGradeToExecute(copy._minGradeToExecute)
 {
-	std::cout << "The form " << _name << " has been copied. ";
+	std::cout << "Form " << _name << " has been copied" << std::endl;
 };
 
 Form& Form::operator=(const Form& copy) {
@@ -54,26 +54,29 @@ const int& Form::getMinGradeToExecute() {
 
 void	Form::beSigned(Bureaucrat& signer) {
 	if (this->_signature == true)
-	{
-		std::cout << "Bureaucrat " << signer.getName() <<" tried to sign the form " << _name << ", but it has already been signed!" << std::endl;
-		return ;
-	}
-	signer.signForm(*this);
-	if (signer.getGrade() <= _minGradeToSign)
-		this->_signature = true;
+		throw Form::FormAlreadySigned();
+	else if (signer.getGrade() > this->getMinGradeToSign())
+		throw Bureaucrat::GradeTooLowException();
 	else
-		throw Form::GradeTooLowException();
+	{
+		this->_signature = true;
+		std::cout << signer.getName() << " signed form " << this->getName() << std::endl;
+	}
 };
 
 const char* Form::GradeTooHighException::what() const noexcept {
-	return ("The grade is too high, please use a lower grade.");
+	return ("The grade is too high, please use a lower grade");
 };
 
 const char* Form::GradeTooLowException::what() const noexcept {
-	return ("The grade is too low, please use a higher grade.");
+	return ("The grade is too low, please use a higher grade");
+};
+
+const char* Form::FormAlreadySigned::what() const noexcept {
+	return ("The form has already been signed");
 };
 
 std::ostream& operator<<(std::ostream& ostream, Form& form) {
-	ostream << "The form " << form.getName() << ", min grade required to sign: " << form.getMinGradeToSign() << ", min grade required to execute: " << form.getMinGradeToExecute() << ", is signed: " << form.getSignature();
+	ostream << "Form " << form.getName() << ", min grade required to sign: " << form.getMinGradeToSign() << ", min grade required to execute: " << form.getMinGradeToExecute() << ", is signed: " << form.getSignature();
 	return (ostream);
 }

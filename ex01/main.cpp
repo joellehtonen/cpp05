@@ -5,55 +5,49 @@ int main(void) {
     Bureaucrat Alice("Alice", 1);
     Bureaucrat Bob("Bob", 10);
 
+    std::cout << "\n---TEST #1: CREATING FORMS---\n";
     try {
+        std::cout << "Creating Form A\n";
         Form a("A", 0, 0);
-        Form b("B", 15, 151);
-        Form c("C", 3, 1);
-    }
-    catch (Form::GradeTooHighException& e) {
-        std::cout << "Form creation exception occurred: " << e.what() << std::endl;
-    }
-    catch (Form::GradeTooLowException& e) {
+    } catch (std::exception& e) {
         std::cout << "Form creation exception occurred: " << e.what() << std::endl;
     }
     try {
+        std::cout << "Creating Form B\n";
         Form b("B", 15, 151);
-    }
-    catch (Form::GradeTooHighException& e) {
-        std::cout << "Form creation exception occurred: " << e.what() << std::endl;
-    }
-    catch (Form::GradeTooLowException& e) {
+    } catch (std::exception& e) {
         std::cout << "Form creation exception occurred: " << e.what() << std::endl;
     }
     try {
+        std::cout << "Creating Form C\n";
         Form c("C", 3, 1);
-    }
-    catch (Form::GradeTooHighException& e) {
+    } catch (std::exception& e) {
         std::cout << "Form creation exception occurred: " << e.what() << std::endl;
     }
-    catch (Form::GradeTooLowException& e) {
-        std::cout << "Form creation exception occurred: " << e.what() << std::endl;
-    }
+
+    std::cout << "\n---TEST #2: SIGNING FORMS---\n";
     Form d("D", 4, 2);
     try {
-        d.beSigned(Bob);
-        d.beSigned(Alice);
-    }
-    catch (Form::GradeTooHighException& e) {
-        std::cout << "Form signing exception occurred: " << e.what() << std::endl;
-    }
-    catch (Form::GradeTooLowException& e) {
+        std::cout << "Bob tries to sign\n";
+        Bob.signForm(d);
+    } catch (std::exception& e) {
         std::cout << "Form signing exception occurred: " << e.what() << std::endl;
     }
     try {
-        d.beSigned(Alice);
-    }
-    catch (Form::GradeTooHighException& e) {
+        std::cout << "Alice tries to sign\n";
+        Alice.signForm(d);
+    } catch (std::exception& e) {
         std::cout << "Form signing exception occurred: " << e.what() << std::endl;
     }
-    catch (Form::GradeTooLowException& e) {
+    try {
+        std::cout << "Alice tries to sign again\n";
+        Alice.signForm(d);
+    } catch (std::exception& e) {
         std::cout << "Form signing exception occurred: " << e.what() << std::endl;
     }
-    d.beSigned(Bob);
+
+    std::cout << "\n---TEST #3: << OPERATOR---\n"; 
     std::cout << d << std::endl;
+
+    std::cout << "\nDECONSTRUCTORS\n";
 };

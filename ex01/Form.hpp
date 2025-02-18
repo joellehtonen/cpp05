@@ -35,6 +35,11 @@ class Form
 		public:
 			virtual const char* what() const noexcept override;
 	};
+	class FormAlreadySigned : public std::exception {
+		public:
+			virtual const char* what() const noexcept override;
+	};
+
 };
 
 std::ostream& operator<<(std::ostream& ostream, Form& form);

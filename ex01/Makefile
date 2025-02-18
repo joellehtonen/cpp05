@@ -5,10 +5,12 @@ SRCS	=	main.cpp \
 			Bureaucrat.cpp \
 			Form.cpp
 OBJS	=	$(SRCS:.cpp=.o)
+HEADER  =	Bureaucrat.hpp \
+			Form.hpp
 
 all: $(NAME)
 
-%.o: %.cpp
+%.o: %.cpp $(HEADER)
 	@$(CC) $(FLAGS) -c $< -o $@
 
 $(NAME): $(OBJS)

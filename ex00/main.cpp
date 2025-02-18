@@ -2,7 +2,7 @@
 
 int main(void) {
 
-    std::cout << "\n---TEST #1: Creating Bureaucrats---\n";
+    std::cout << "\n---TEST #1: CREATING BUREAUCRATS--\n";
     try {
         std::cout << "Creating Alice\n";
         Bureaucrat Alice("Alice", 2);
@@ -22,7 +22,7 @@ int main(void) {
         std::cout << "Creation exception occured: " << e.what() << std::endl;
     }
 
-    std::cout << "\n---TEST #2: Incremeting and Decrementing---\n";
+    std::cout << "\n---TEST #2: INCREMENTING AND DECREMENTING--\n";
     Bureaucrat Charlie("Charlie", 2);
     Bureaucrat David("David", 1);
     try {
@@ -37,5 +37,10 @@ int main(void) {
     } catch (std::exception& e) {
         std::cout << "Decrementing exception occured: " << e.what() << std::endl;
     }
-    std::cout << "Here is " << Charlie << " and " << David << std::endl;
+
+    std::cout << "\n---TEST #3: << OPERATOR---\n"; 
+    std::cout << Charlie << std::endl;
+    std::cout << David << std::endl;
+
+    std::cout << "\nDECONSTRUCTORS\n";
 };
