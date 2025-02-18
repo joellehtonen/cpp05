@@ -31,4 +31,5 @@ int main(void) {
     }
 
     std::cout << "\nDESTRUCTORS\n";
+    delete form;
 };
