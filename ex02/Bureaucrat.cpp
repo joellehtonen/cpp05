@@ -55,9 +55,15 @@ void Bureaucrat::decrementGrade() {
 
 void Bureaucrat::signForm(AForm& form) {
     if (this->_grade > form.getMinGradeToSign())
+    {
+        std::cout << _name << " couldn't sign " << form.getName() << " because their grade isn't high enough." << std::endl;
         throw GradeTooLowException();
+    }
     else
+    {
+        std::cout << _name << " signed form " << form.getName() << std::endl;
         form.beSigned(*this);
+    }
 };
 
 void Bureaucrat::executeForm(const AForm& form) {

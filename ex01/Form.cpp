@@ -58,10 +58,7 @@ void	Form::beSigned(Bureaucrat& signer) {
 	else if (signer.getGrade() > this->getMinGradeToSign())
 		throw Form::GradeTooLowException();
 	else
-	{
 		this->_signature = true;
-		std::cout << signer.getName() << " signed form " << this->getName() << std::endl;
-	}
 };
 
 const char* Form::GradeTooHighException::what() const noexcept {

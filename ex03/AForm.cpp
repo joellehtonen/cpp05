@@ -56,13 +56,11 @@ void	AForm::beSigned(Bureaucrat& signer) {
 	if (this->_signature == true)
 		throw AForm::FormAlreadySigned();
 	else if (signer.getGrade() > this->getMinGradeToSign())
-		throw Bureaucrat::GradeTooLowException();
+		throw AForm::GradeTooLowException();
 	else
-	{
 		this->_signature = true;
-		std::cout << signer.getName() << " signed form " << this->getName() << std::endl;
-	}
 };
+
 
 void AForm::execute(const Bureaucrat& executor) const {
 	if (this->_signature == false)
