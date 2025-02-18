@@ -1,16 +1,16 @@
 #include "ShrubberyCreationForm.hpp"
 
 ShrubberyCreationForm::ShrubberyCreationForm() : AForm("ShrubberyCreationForm", 145, 137), _target("Unknown") {
-	std::cout << "A generic ShrubberyCreationForm is transcribed." << std::endl;
+	std::cout << "A generic ShrubberyCreationForm is transcribed" << std::endl;
 };
 
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string& paramTarget) : AForm("ShrubberyCreationForm", 145, 137), _target(paramTarget) {
-	std::cout << "A ShrubberyCreationForm is transcribed." << std::endl;
+	std::cout << "ShrubberyCreationForm is transcribed" << std::endl;
 };
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& copy) : AForm(copy)
 {
-	std::cout << "ShrubberyCreationForm " << this->getName() << " is copied." << std::endl;
+	std::cout << "ShrubberyCreationForm " << this->getName() << " is copied" << std::endl;
 };
 
 ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm& copy)
@@ -19,17 +19,17 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationF
 	{
 		this->_target = copy._target;
 	}
-	std::cout << "ShrubberyCreationForm is assigned to be copied." << std::endl;
+	std::cout << "ShrubberyCreationForm is assigned to be copied" << std::endl;
 	return *this;
 };
 
 ShrubberyCreationForm::~ShrubberyCreationForm() {
-	std::cout << "A ShrubberyCreationForm is cut to pieces by the secretary." << std::endl;
+	std::cout << "ShrubberyCreationForm is cut to pieces by the secretary" << std::endl;
 };
 
 void ShrubberyCreationForm::beExecuted() const
 {
-	std::cout << "(Check the working directory)\n";
+	std::cout << "Shrubbery creation successful, please check the working directory\n";
 	std::ofstream shrubbery(this->_target + "_shrubbery");
 	if (shrubbery.is_open()) {
 		shrubbery << "        *         " << std::endl;

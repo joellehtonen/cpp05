@@ -38,6 +38,10 @@ class AForm
 		public:
 			virtual const char* what() const noexcept override;
 	};
+	class FormAlreadySigned : public std::exception {
+		public:
+			virtual const char* what() const noexcept override;
+	};
 	class FormNotSigned : public std::exception {
 		public:
 			virtual const char* what() const noexcept override;

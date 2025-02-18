@@ -1,7 +1,7 @@
 #include "Bureaucrat.hpp"
 
 Bureaucrat::Bureaucrat() : _name("Default"), _grade(150) {
-    std::cout << "Default constructor called." << std::endl;
+    std::cout << "Default constructor called" << std::endl;
 };
 
 Bureaucrat::Bureaucrat(std::string paramName, int paramGrade) : _name(paramName) {
@@ -18,13 +18,13 @@ Bureaucrat::~Bureaucrat() {
     std::cout << "Destructor called for " << _name << std::endl;;
 };
 Bureaucrat::Bureaucrat(const Bureaucrat& copy) : _name(copy._name), _grade(copy._grade) {
-    std::cout << "Copy constructor called." << std::endl;
+    std::cout << "Copy constructor called" << std::endl;
 };
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat &copy) {
     if (this != &copy)
     {
         this->_grade = copy._grade;
-        std::cout << "Copy assignment constructor called." << std::endl;;
+        std::cout << "Copy assignment constructor called" << std::endl;;
     }
     return *this;
 };
@@ -54,33 +54,29 @@ void Bureaucrat::decrementGrade() {
 };
 
 void Bureaucrat::signForm(AForm& form) {
-    if (this->_grade <= form.getMinGradeToSign())
-    {
-        std::cout << _name << " signed form " << form.getName() << std::endl;
-        form.beSigned(*this);
-    }
+    if (this->_grade > form.getMinGradeToSign())
+        throw GradeTooLowException();
     else
-        std::cout << _name << " couldn't sign " << form.getName() << " because their grade isn't high enough." << std::endl;
-}
+        form.beSigned(*this);
+};
 
 void Bureaucrat::executeForm(const AForm& form) {
-    if (this->_grade <= form.getMinGradeToExecute())
-    {
+    try {
+        form.execute(*this);
         std::cout << _name << " executed form " << form.getName() << std::endl;
-        form.beExecuted();
+    } catch (std::exception& e) {
+        throw ;
     }
-     else
-        std::cout << _name << " is unable execute " << form.getName() << " as their grade isn't high enough." << std::endl;
 };
 
 const char* Bureaucrat::GradeTooHighException::what() const noexcept {
-    return ("The grade is too high, please use a lower grade.");
+    return ("The grade is too high, please use a lower grade");
 };
 const char* Bureaucrat::GradeTooLowException::what() const noexcept {
-    return ("The grade is too low, please use a higher grade.");
+    return ("The grade is too low, please use a higher grade");
 };
 
 std::ostream& operator<<(std::ostream& ostream, Bureaucrat& bureaucrat) {
-    ostream << bureaucrat.getName() << " (grade: " << bureaucrat.getGrade() << ")";
+    ostream << "Bureaucrat " << bureaucrat.getName() << ", grade: " << bureaucrat.getGrade();
     return (ostream);
 };

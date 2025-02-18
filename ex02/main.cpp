@@ -3,8 +3,6 @@
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
-#define FORM_SIGN_ERROR "ERROR. Form signing exception occurred: "
-#define FORM_EXEC_ERROR "ERROR. Form executing exception occurred: "
 
 int main(void) {
     std::cout << "\nCONSTRUCTORS\n";
@@ -19,59 +17,49 @@ int main(void) {
     std::cout << "\nSHRUBBERY\n";
     try {
         Alice.executeForm(S);
-    }
-    catch (AForm::FormNotSigned& e) {
-        std::cout << FORM_SIGN_ERROR << e.what() << std::endl;
+    } catch (std::exception& e) {
+        std::cout << "ERROR. " << e.what() << std::endl;
     }
     try {
         Alice.signForm(S);
-    }
-    catch (AForm::GradeTooLowException& e) {
-        std::cout << FORM_SIGN_ERROR << e.what() << std::endl;
-    }
-    try {
         Alice.executeForm(S);
+    } catch (std::exception& e) {
+        std::cout << "ERROR. " << e.what() << std::endl;
     }
-    catch (AForm::GradeTooLowException& e) {
-        std::cout << FORM_EXEC_ERROR << e.what() << std::endl;
-    }
+
+
+
     std::cout << "\nROBOTOMY\n";
     try {
         Alice.signForm(R);
-    }
-    catch (AForm::GradeTooLowException& e) {
-        std::cout << FORM_SIGN_ERROR << e.what() << std::endl;
-    }
-    try {
         Alice.executeForm(R);
-    }
-    catch (AForm::GradeTooLowException& e) {
-        std::cout << FORM_EXEC_ERROR << e.what() << std::endl;
+    } catch (std::exception& e) {
+        std::cout << "ERROR. " << e.what() << std::endl;
     }
     try {
         Bob.executeForm(R);
+    } catch (std::exception& e) {
+        std::cout << "ERROR. " << e.what() << std::endl;
     }
-    catch (AForm::GradeTooLowException& e) {
-        std::cout << FORM_EXEC_ERROR << e.what() << std::endl;
-    }
+
+
+
     std::cout << "\nPARDON\n";
     try {
         Bob.signForm(P);
-    }
-    catch (AForm::GradeTooLowException& e) {
-        std::cout << FORM_SIGN_ERROR << e.what() << std::endl;
+    } catch (std::exception& e) {
+        std::cout << "ERROR. " << e.what() << std::endl;
     }
     try {
         Bob.executeForm(P);
-    }
-    catch (AForm::GradeTooLowException& e) {
-        std::cout << FORM_EXEC_ERROR << e.what() << std::endl;
+    } catch (std::exception& e) {
+        std::cout << "ERROR. " << e.what() << std::endl;
     }
     try {
         Charlie.executeForm(P);
+    } catch (std::exception& e) {
+        std::cout << "ERROR. " << e.what() << std::endl;
     }
-    catch (AForm::GradeTooLowException& e) {
-        std::cout << FORM_EXEC_ERROR << e.what() << std::endl;
-    }
+
     std::cout << "\nDESTRUCTORS\n";
 };
