@@ -2,12 +2,13 @@ NAME	=	bureaucrat
 CC		=	c++
 FLAGS	=	-Wall -Wextra -Werror -std=c++20
 SRCS	=	main.cpp \
-			Bureaucrat.cpp \
+			Bureaucrat.cpp
 OBJS	=	$(SRCS:.cpp=.o)
+HEADER  =	Bureaucrat.hpp
 
 all: $(NAME)
 
-%.o: %.cpp
+%.o: %.cpp $(HEADER)
 	@$(CC) $(FLAGS) -c $< -o $@
 
 $(NAME): $(OBJS)
