@@ -6,19 +6,22 @@ int main(void) {
     try {
         std::cout << "Creating Alice\n";
         Bureaucrat Alice("Alice", 2);
-    } catch (std::exception& e) {
+    }
+    catch (std::exception& e) {
         std::cout << "Creation exception occured: " << e.what() << std::endl;
     }
     try {
         std::cout << "Creating Bob\n";
         Bureaucrat Bob("Bob", 200); //will throw exception
-    } catch (std::exception& e) {
+    }
+    catch (std::exception& e) {
         std::cout << "Creation exception occured: " << e.what() << std::endl;
     }
     try {
         std::cout << "Creating Charlie\n";
         Bureaucrat Charlie("Charlie", 0); //will throw exception
-    } catch (std::exception& e) {
+    }
+    catch (std::exception& e) {
         std::cout << "Creation exception occured: " << e.what() << std::endl;
     }
 
@@ -28,13 +31,15 @@ int main(void) {
     try {
         Charlie.incrementGrade();
         David.incrementGrade(); //will throw exception
-    } catch (std::exception& e) {
+    }
+    catch (std::exception& e) {
         std::cout << "Incrementing exception occured: " << e.what() << std::endl;
     }
     try {
         for (int i = 0; i < 10; i++)
             Charlie.decrementGrade();
-    } catch (std::exception& e) {
+    }
+    catch (std::exception& e) {
         std::cout << "Decrementing exception occured: " << e.what() << std::endl;
     }
 

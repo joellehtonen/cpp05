@@ -21,20 +21,13 @@ Intern& Intern::operator=(const Intern& copy) {
 
 AForm* Intern::makeForm(std::string form, std::string target) {
 	AForm* (Intern::*formPointers[])(const std::string&) = {&Intern::createPresidentialPardonForm, &Intern::createRobotomyRequestForm, &Intern::createShrubberyCreationForm};
-	std::string forms[] = {"PresidentialPardon", "Presidential Pardon", "presidential pardon", "presidential_pardon", "presidentialpardon", \
-		"RobotomyRequest", "Robotomy Request", "robotomy request", "robotomy_request", "robotomyrequest", \
-		"ShrubberyCreation", "Shrubbery Creation", "shrubbery creation", "shrubbery_creation", "shrubberycreation"};
-	for (int i = 0; i < 15; i++)
+	std::string forms[] = {"presidential pardon", "robotomy request", "shrubbery creation"};
+	for (int i = 0; i < 3; i++)
 	{
 		if (forms[i] == form)
 		{
 			std::cout << "Intern creates " << form << " for " << target << std::endl;
-			if (i < 5)
-				return (this->*formPointers[0])(target);
-			if (i < 10)
-				return (this->*formPointers[1])(target);
-			if (i < 15)
-				return (this->*formPointers[2])(target);
+			return (this->*formPointers[i])(target);
 		}
 	}
 	throw FormDoesntExist();

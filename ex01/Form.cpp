@@ -13,7 +13,7 @@ Form::Form(std::string paramName, int gradeToSign, int gradeToExecute)
 		throw Form::GradeTooLowException();
 	else
 	{
-		std::cout << "Form " << _name << " created\n";
+		std::cout << "Form " << _name << " created. ";
 		std::cout << "Minimum grade to sign: " <<  _minGradeToSign << ". Minimum grade to execute: " << _minGradeToExecute << std::endl;
 	}
 };
@@ -56,7 +56,7 @@ void	Form::beSigned(Bureaucrat& signer) {
 	if (this->_signature == true)
 		throw Form::FormAlreadySigned();
 	else if (signer.getGrade() > this->getMinGradeToSign())
-		throw Bureaucrat::GradeTooLowException();
+		throw Form::GradeTooLowException();
 	else
 	{
 		this->_signature = true;

@@ -17,13 +17,15 @@ int main(void) {
     std::cout << "\nSHRUBBERY\n";
     try {
         Alice.executeForm(S);
-    } catch (std::exception& e) {
+    }
+    catch (std::exception& e) {
         std::cout << "ERROR. " << e.what() << std::endl;
     }
     try {
         Alice.signForm(S);
         Alice.executeForm(S);
-    } catch (std::exception& e) {
+    }
+    catch (std::exception& e) {
         std::cout << "ERROR. " << e.what() << std::endl;
     }
 
@@ -33,12 +35,14 @@ int main(void) {
     try {
         Alice.signForm(R);
         Alice.executeForm(R);
-    } catch (std::exception& e) {
+    }
+    catch (std::exception& e) {
         std::cout << "ERROR. " << e.what() << std::endl;
     }
     try {
         Bob.executeForm(R);
-    } catch (std::exception& e) {
+    }
+    catch (std::exception& e) {
         std::cout << "ERROR. " << e.what() << std::endl;
     }
 
@@ -47,17 +51,20 @@ int main(void) {
     std::cout << "\nPARDON\n";
     try {
         Bob.signForm(P);
-    } catch (std::exception& e) {
+    }
+    catch (std::exception& e) {
         std::cout << "ERROR. " << e.what() << std::endl;
     }
     try {
         Bob.executeForm(P);
-    } catch (std::exception& e) {
+    }
+    catch (std::exception& e) {
         std::cout << "ERROR. " << e.what() << std::endl;
     }
     try {
         Charlie.executeForm(P);
-    } catch (std::exception& e) {
+    }
+    catch (std::exception& e) {
         std::cout << "ERROR. " << e.what() << std::endl;
     }
 

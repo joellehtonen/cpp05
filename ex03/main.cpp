@@ -6,27 +6,27 @@
 #include "Intern.hpp"
 
 int main(void) {
-    std::cout << "\nCONSTRUCTORS\n";
+    std::cout << "CONSTRUCTORS\n";
     Intern intern;
     AForm *form;
     Bureaucrat Alice("Alice", 1);
 
-    std::cout << "\nVALID ACTION\n";
+    std::cout << "\n---VALID ACTION---\n";
     try {
-        form = intern.makeForm("robotomy_request", "The President");
+        form = intern.makeForm("robotomy request", "The President");
     }
-    catch (Intern::FormDoesntExist& e) {
+    catch (std::exception& e) {
         std::cout << "Error." << e.what() << std::endl;
     }
 
     Alice.signForm(*form);
     Alice.executeForm(*form);
 
-    std::cout << "\nINVALID ACTION\n";
+    std::cout << "\n---INVALID ACTION---\n";
     try {
-        form = intern.makeForm("robot_shrubbery", "The President");
+        form = intern.makeForm("robot shrubbery", "The President");
     }
-    catch (Intern::FormDoesntExist& e) {
+    catch (std::exception& e) {
         std::cout << "Error. " << e.what() << std::endl;
     }
 

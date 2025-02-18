@@ -32,7 +32,7 @@ class Bureaucrat
                 virtual const char* what() const noexcept override;
         };
         class GradeTooLowException : public std::exception {
-           public:
+            public:
                 virtual const char* what() const noexcept override;
         };
 };
